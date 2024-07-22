@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float health = 50f;  // 적의 초기 체력
+    public GameObject explosionEffect;
+    public Element element;
 
     public void TakeDamage(float amount)
     {
@@ -18,5 +20,6 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);  // 적 게임 오브젝트 제거
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
     }
 }

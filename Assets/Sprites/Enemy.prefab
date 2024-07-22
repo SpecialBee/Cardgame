@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  explosionEffect: {fileID: 8792215860037590867, guid: d5d03b258c9dd4a3f8b8cb602b2ed9f5, type: 3}

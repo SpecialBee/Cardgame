@@ -7,6 +7,20 @@ public class Bullet : MonoBehaviour
     private Transform target;
     private float speed;  // 총알의 속도
     private float damage;  // 총알의 공격력
+    public float baseDamage;
+    public Element element;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            float damageMultiplier = ElementalDamage.GetDamageMultiplier(element, enemy.element);
+            float finalDamage = baseDamage * damageMultiplier;
+            enemy.TakeDamage(finalDamage);
+            Destroy(gameObject);
+        }
+    }
 
     public void Seek(Transform _target, float _speed, float _damage)
     {
@@ -14,6 +28,8 @@ public class Bullet : MonoBehaviour
         speed = _speed;
         damage = _damage;
     }
+
+    public GameObject explosionEffect; // 폭발 효과 프리팹
 
     void Update()
     {
@@ -43,5 +59,6 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
         Destroy(gameObject);  // 타겟에 도달하면 총알 파괴
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
     }
 }

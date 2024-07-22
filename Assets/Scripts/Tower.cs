@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     public float attackRange = 5f; // 공격 범위
     public float attackInterval = 1f; // 공격 간격
     public float damageAmount = 20f; // 총알의 공격력
+    public Element element;
 
     private float lastAttackTime; // 마지막 공격 시간
 
